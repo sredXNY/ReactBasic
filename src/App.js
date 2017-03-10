@@ -5,12 +5,18 @@ class App extends React.Component{
     constructor(){
         super();
         this.state={
-            txt: 'this is the state txt'
+            txt: 'this is the state txt',
+            currentEvent: '---'
         }
+        this.update2= this.update2.bind(this)
     }
 
     update(e){
         this.setState({txt:e.target.value});
+    }
+
+    update2(e){
+        this.setState({currentEvent:e.type});
     }
 
     render(){
@@ -19,6 +25,14 @@ class App extends React.Component{
                     <Widget update={this.update.bind(this)}/>
                     <Button>I <Heart/> React</Button>
                     <Title text="The text title!"></Title>
+
+                    <label>This is for Syntethic events</label>
+                    <textarea
+                        onKeyPress={this.update2}
+                        onCut={this.update2}
+                        onPaste={this.update2}
+                        cols="30" rows="10"/>
+                    <h1>{this.state.currentEvent}</h1>
                 </div>
         //return React.createElement('h1',null, 'Hello creating from React!')
     }
