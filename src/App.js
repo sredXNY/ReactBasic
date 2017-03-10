@@ -18,8 +18,26 @@ class App extends React.Component{
                     <h1>{this.state.txt}</h1>
                     <Widget update={this.update.bind(this)}/>
                     <Button>I <Heart/> React</Button>
+                    <Title text="The text title!"></Title>
                 </div>
         //return React.createElement('h1',null, 'Hello creating from React!')
+    }
+}
+
+
+const Widget= (props) =>  <input type="text" onChange={props.update}/>
+const Button= (props) =>  <button>{props.children}</button>
+const Title=  (props) =>  <h1>Title: {props.text}</h1>
+//const App= () => <h1>Return stateless component</h1>
+
+Title.propTypes={
+    text(props,propName,component){
+        if(!(propName in props)){
+            return new Error(`missing ${propName}`);
+        }
+        if(props[propName].length<6){
+            return new Error(`Length must be >6 characters ${propName}`)
+        }
     }
 }
 
@@ -30,10 +48,6 @@ App.propTypes = {
 App.defaultProps={
     text:"this is react!! default prop"
 }
-
-const Widget= (props) =>  <input type="text" onChange={props.update}/>
-const Button= (props) =>  <button>{props.children}</button>
-//const App= () => <h1>Return stateless component</h1>
 
 class Heart extends React.Component{
     render(){
