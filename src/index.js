@@ -1,6 +1,6 @@
 import React from 'react';
 import ReactDOM from 'react-dom';
-import DynamicContent from './DynamicContent'
+import HigherOrder from './HigherOrder'
 /*
 ReactDOM.render(
   <App text="This is the prop text" cat={5}/>,
@@ -9,4 +9,4 @@ ReactDOM.render(
 
 ReactDOM.render(<LifeCycle/>,document.getElementById('root2'))
 */
-ReactDOM.render(<DynamicContent/>,document.getElementById('root'))
+ReactDOM.render(<HigherOrder/>,document.getElementById('root'))
