@@ -4,20 +4,27 @@ import ReactDOM from 'react-dom'
 class LifeCycle extends React.Component{
     constructor(){
         super();
-        this.state={val: 0}
+        this.state={increasing: false}
         this.update=this.update.bind(this)
     }
     update(){
-        this.setState({val:this.state.val+1})
+        ReactDOM.render(<LifeCycle val={this.props.val+1}/>,document.getElementById('a'))
     }
 
+    componentWillReceiveProps(nextProps){
+        this.setState({increasing: nextProps.val > this.props.val})
+    }
+
+    shouldComponentUpdate(nextProps,nextState){
+        return nextProps%5 === 0;
+    }
     componentWillMount(){
         console.log("will mount");
     }
 
     render(){
-        console.log('render');
-        return <button onClick={this.update}>{this.state.val}</button>
+        console.log(this.state.increasing);
+        return <button onClick={this.update}>{this.props.val}</button>
     }
 
     componentDidMount(){
@@ -25,6 +32,8 @@ class LifeCycle extends React.Component{
     }
 
 }
+
+LifeCycle.defaultProps={val:0}
 
 class Wrapper extends React.Component{
     mount(){
